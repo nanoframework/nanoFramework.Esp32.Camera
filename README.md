@@ -1,0 +1,1 @@
+# nanoFramework.Esp32.Camera
