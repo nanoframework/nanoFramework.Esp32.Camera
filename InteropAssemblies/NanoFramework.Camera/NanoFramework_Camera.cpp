@@ -6,7 +6,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include "NanoFramwwork_Camera.h"
+#include "NanoFramework_Camera.h"
 
 // clang-format off
 
@@ -18,9 +18,9 @@ static const CLR_RT_MethodHandler method_lookup[] =
     NULL,
     NULL,
     NULL,
-    Library_NanoFramwwork_Camera_NanoFramework_Camera_Camera::NativeInit___VOID,
-    Library_NanoFramwwork_Camera_NanoFramework_Camera_Camera::NativeGrabJPEG___SZARRAY_U1,
-    Library_NanoFramwwork_Camera_NanoFramework_Camera_Camera::NativeDispose___VOID,
+    Library_NanoFramework_Camera_NanoFramework_Camera_Camera::NativeInit___VOID,
+    Library_NanoFramework_Camera_NanoFramework_Camera_Camera::NativeGrabJPEG___SZARRAY_U1,
+    Library_NanoFramework_Camera_NanoFramework_Camera_Camera::NativeDispose___VOID,
     NULL,
     NULL,
     NULL,
@@ -56,10 +56,10 @@ static const CLR_RT_MethodHandler method_lookup[] =
     NULL,
 };
 
-const CLR_RT_NativeAssemblyData g_CLR_AssemblyNative_NanoFramwwork_Camera =
+const CLR_RT_NativeAssemblyData g_CLR_AssemblyNative_NanoFramework_Camera =
 {
-    "NanoFramwwork.Camera",
-    0xDDD88156,
+    "NanoFramework.Camera",
+    0x08F262B1,
     method_lookup,
     { 1, 0, 0, 0 }
 };

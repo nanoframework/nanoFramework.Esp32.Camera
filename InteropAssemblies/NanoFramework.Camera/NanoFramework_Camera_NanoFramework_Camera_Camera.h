@@ -10,12 +10,12 @@
 //
 //-----------------------------------------------------------------------------
 
-#ifndef _NANOFRAMWWORK_CAMERA_NANOFRAMWWORK_CAMERA_NANOFRAMEWORK_CAMERA_CAMERA_H_
-#define _NANOFRAMWWORK_CAMERA_NANOFRAMWWORK_CAMERA_NANOFRAMEWORK_CAMERA_CAMERA_H_
+#ifndef _NANOFRAMEWORK_CAMERA_NANOFRAMEWORK_CAMERA_NANOFRAMEWORK_CAMERA_CAMERA_H_
+#define _NANOFRAMEWORK_CAMERA_NANOFRAMEWORK_CAMERA_NANOFRAMEWORK_CAMERA_CAMERA_H_
 
-namespace NanoFramwwork_Camera
+namespace NanoFramework_Camera
 {
-    namespace NanoFramwwork_Camera
+    namespace NanoFramework_Camera
     {
         struct Camera
         {
@@ -32,4 +32,4 @@ namespace NanoFramwwork_Camera
     }
 }
 
-#endif //_NANOFRAMWWORK_CAMERA_NANOFRAMWWORK_CAMERA_NANOFRAMEWORK_CAMERA_CAMERA_H_
+#endif //_NANOFRAMEWORK_CAMERA_NANOFRAMEWORK_CAMERA_NANOFRAMEWORK_CAMERA_CAMERA_H_

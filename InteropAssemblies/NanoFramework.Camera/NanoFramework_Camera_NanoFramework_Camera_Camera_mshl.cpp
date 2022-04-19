@@ -6,13 +6,13 @@
 //
 //-----------------------------------------------------------------------------
 
-#include "NanoFramwwork_Camera.h"
-#include "NanoFramwwork_Camera_NanoFramework_Camera_Camera.h"
+#include "NanoFramework_Camera.h"
+#include "NanoFramework_Camera_NanoFramework_Camera_Camera.h"
 
-using namespace NanoFramwwork_Camera::NanoFramwwork_Camera;
+using namespace NanoFramework_Camera::NanoFramework_Camera;
 
 
-HRESULT Library_NanoFramwwork_Camera_NanoFramework_Camera_Camera::NativeInit___VOID( CLR_RT_StackFrame& stack )
+HRESULT Library_NanoFramework_Camera_NanoFramework_Camera_Camera::NativeInit___VOID( CLR_RT_StackFrame& stack )
 {
     NANOCLR_HEADER(); hr = S_OK;
     {
@@ -24,7 +24,7 @@ HRESULT Library_NanoFramwwork_Camera_NanoFramework_Camera_Camera::NativeInit___V
     NANOCLR_NOCLEANUP();
 }
 
-HRESULT Library_NanoFramwwork_Camera_NanoFramework_Camera_Camera::NativeGrabJPEG___SZARRAY_U1( CLR_RT_StackFrame& stack )
+HRESULT Library_NanoFramework_Camera_NanoFramework_Camera_Camera::NativeGrabJPEG___SZARRAY_U1( CLR_RT_StackFrame& stack )
 {
     NANOCLR_HEADER(); hr = S_OK;
     {
@@ -36,7 +36,7 @@ HRESULT Library_NanoFramwwork_Camera_NanoFramework_Camera_Camera::NativeGrabJPEG
     NANOCLR_NOCLEANUP();
 }
 
-HRESULT Library_NanoFramwwork_Camera_NanoFramework_Camera_Camera::NativeDispose___VOID( CLR_RT_StackFrame& stack )
+HRESULT Library_NanoFramework_Camera_NanoFramework_Camera_Camera::NativeDispose___VOID( CLR_RT_StackFrame& stack )
 {
     NANOCLR_HEADER(); hr = S_OK;
     {

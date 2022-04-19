@@ -6,14 +6,14 @@
 //
 //-----------------------------------------------------------------------------
 
-#ifndef _NANOFRAMWWORK_CAMERA_H_
-#define _NANOFRAMWWORK_CAMERA_H_
+#ifndef _NANOFRAMEWORK_CAMERA_H_
+#define _NANOFRAMEWORK_CAMERA_H_
 
 #include <nanoCLR_Interop.h>
 #include <nanoCLR_Runtime.h>
 #include <nanoPackStruct.h>
 
-struct Library_NanoFramwwork_Camera_NanoFramework_Camera_Camera
+struct Library_NanoFramework_Camera_NanoFramework_Camera_Camera
 {
     static const int FIELD___syncLock = 1;
     static const int FIELD___cameraConnectionSettings = 2;
@@ -27,7 +27,7 @@ struct Library_NanoFramwwork_Camera_NanoFramework_Camera_Camera
 
 };
 
-struct Library_NanoFramwwork_Camera_NanoFramework_Camera_CameraConnectionSettings
+struct Library_NanoFramework_Camera_NanoFramework_Camera_CameraConnectionSettings
 {
     static const int FIELD__<CAM_PIN_PWDN>k__BackingField = 1;
     static const int FIELD__<CAM_PIN_RESET>k__BackingField = 2;
@@ -50,6 +50,6 @@ struct Library_NanoFramwwork_Camera_NanoFramework_Camera_CameraConnectionSetting
 
 };
 
-extern const CLR_RT_NativeAssemblyData g_CLR_AssemblyNative_NanoFramwwork_Camera;
+extern const CLR_RT_NativeAssemblyData g_CLR_AssemblyNative_NanoFramework_Camera;
 
-#endif  //_NANOFRAMWWORK_CAMERA_H_
+#endif  //_NANOFRAMEWORK_CAMERA_H_

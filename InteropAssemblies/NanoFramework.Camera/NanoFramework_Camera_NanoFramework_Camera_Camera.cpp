@@ -10,10 +10,10 @@
 //
 //-----------------------------------------------------------------------------
 
-#include "NanoFramwwork_Camera.h"
-#include "NanoFramwwork_Camera_NanoFramework_Camera_Camera.h"
+#include "NanoFramework_Camera.h"
+#include "NanoFramework_Camera_NanoFramework_Camera_Camera.h"
 
-using namespace NanoFramwwork_Camera::NanoFramwwork_Camera;
+using namespace NanoFramework_Camera::NanoFramework_Camera;
 
 
 void Camera::NativeInit(  HRESULT &hr )
