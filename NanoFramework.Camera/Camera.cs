@@ -22,6 +22,14 @@ namespace NanoFramework.Camera
         /// </summary>
         public CameraConnectionSettings ConnectionSettings { get => _cameraConnectionSettings; }
 
+        public byte[] GrabJPEG()
+        {
+            lock (_syncLock)
+            {
+                return NativeGrabJPEG();
+            }
+        }
+
         /// <summary>
         /// Create the Camera Device
         /// </summary>
@@ -77,9 +85,10 @@ namespace NanoFramework.Camera
         private extern void NativeInit();
 
         [MethodImpl(MethodImplOptions.InternalCall)]
-        private extern void NativeDispose();
+        private extern byte[] NativeGrabJPEG();
 
-        
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        private extern void NativeDispose();
 
         #endregion
     }
