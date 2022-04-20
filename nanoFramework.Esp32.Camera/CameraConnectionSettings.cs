@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NanoFramework.Camera
+namespace nanoFramework.Esp32.Camera
 {
     /// <summary>
     /// Connection Settings for the Camera Module...

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace NanoFramework.Camera
+namespace nanoFramework.Esp32.Camera
 {
     public class Camera : IDisposable
     {
