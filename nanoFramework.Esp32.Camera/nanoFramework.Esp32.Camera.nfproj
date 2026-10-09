@@ -17,7 +17,7 @@
     <AssemblyName>nanoFramework.Esp32.Camera</AssemblyName>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
     <NF_IsCoreLibrary>True</NF_IsCoreLibrary>
-    <DocumentationFile>bin\$(Configuration)\nanoFramework.Esp32.Camer.xml</DocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\nanoFramework.Esp32.Camera.xml</DocumentationFile>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <RestoreLockedMode Condition="'$(TF_BUILD)' == 'True' or '$(ContinuousIntegrationBuild)' == 'True'">true</RestoreLockedMode>
   </PropertyGroup>
@@ -42,8 +42,15 @@
   </ItemGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
-    <Compile Include="Camera.cs" />
+    <Compile Include="CameraBoardPresets.cs" />
     <Compile Include="CameraConnectionSettings.cs" />
+    <Compile Include="CameraInitResult.cs" />
+    <Compile Include="CameraSensor.cs" />
+    <Compile Include="Esp32Camera.cs" />
+    <Compile Include="FrameBufferLocation.cs" />
+    <Compile Include="FrameSize.cs" />
+    <Compile Include="GrabMode.cs" />
+    <Compile Include="SensorSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
