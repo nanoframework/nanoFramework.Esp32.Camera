@@ -17,7 +17,7 @@ using (var camera = new Esp32Camera(settings))
 
     if (result != CameraInitResult.Success)
     {
-        Debug.WriteLine($"Camera initialization failed: {result}");
+        Debug.WriteLine("Camera initialization failed: " + result.GetMessage());
         return;
     }
 
@@ -55,6 +55,58 @@ If a thread is aborted while it's waiting in `TryCapture`, the following capture
 - `CameraBoardPresets.XiaoEsp32S3Sense()`
 
 Presets describe boards rather than sensors because the driver detects the sensor (OV2640, OV3660, OV5640, GC0308, etc.), which is available in `Esp32Camera.Sensor`. Verify a preset against the schematic of the board revision being used.
+
+## Configuring a board without a preset
+
+Create a `CameraConnectionSettings` instance and map each camera signal to its ESP32 GPIO according to the board schematic.
+
+```csharp
+var settings = new CameraConnectionSettings
+{
+    PinPowerDown = POWER_DOWN_GPIO, // Use -1 when not connected.
+    PinReset = RESET_GPIO,          // Use -1 for software reset.
+    PinXclk = XCLK_GPIO,
+    PinSccbSda = SCCB_SDA_GPIO,
+    PinSccbScl = SCCB_SCL_GPIO,
+    PinD7 = D7_GPIO,
+    PinD6 = D6_GPIO,
+    PinD5 = D5_GPIO,
+    PinD4 = D4_GPIO,
+    PinD3 = D3_GPIO,
+    PinD2 = D2_GPIO,
+    PinD1 = D1_GPIO,
+    PinD0 = D0_GPIO,
+    PinVsync = VSYNC_GPIO,
+    PinHref = HREF_GPIO,
+    PinPclk = PCLK_GPIO,
+    XclkFreqHz = 20_000_000,
+    FrameSize = FrameSize.Qvga,
+    JpegQuality = 12,
+    FrameBufferCount = 1,
+    FrameBufferLocation = FrameBufferLocation.Psram,
+    GrabMode = GrabMode.WhenEmpty,
+};
+```
+
+For example, if the board schematic shows that the camera's D7 signal is connected to ESP32 GPIO 5, XCLK is connected to GPIO 15, and PCLK is connected to GPIO 13, those entries would be written as:
+
+```csharp
+var settings = new CameraConnectionSettings
+{
+    PinD7 = 5,
+    PinXclk = 15,
+    PinPclk = 13,
+    // Set every other required signal to its GPIO in the same way.
+};
+```
+
+These GPIO numbers are illustrative only and are not a complete configuration. Use the values from the schematic for the exact board and hardware revision being configured.
+
+The data-pin names must follow the camera schematic's D0 through D7 labels; do not reorder them by GPIO number. `PinPowerDown` and `PinReset` can be `-1` when those signals are not connected.
+
+For SCCB, either set both `PinSccbSda` and `PinSccbScl`, or set both to `-1` and assign `SccbI2cPort` to an I2C bus that has already been configured. Do not mix a GPIO-based SCCB setting with an existing I2C-port setting.
+
+For initial board bring-up, use a small frame size, one frame buffer, and `GrabMode.WhenEmpty`. Select `FrameBufferLocation.Psram` only when PSRAM is present and enabled in the device firmware; otherwise use `FrameBufferLocation.Dram` with a small frame size. If initialization fails, log `result.GetMessage()` and verify the pin mapping, camera power supply, XCLK frequency, and SCCB wiring.
 
 ## Connection settings and sensor settings
 
