@@ -31,6 +31,8 @@ using (var camera = new Esp32Camera(settings))
 }
 ```
 
+This example initializes the camera with VGA-sized frame buffers and then reduces the sensor output to QVGA. Setting the larger size before `Initialize()` allows the application to switch between QVGA and VGA later without reinitializing the camera. If the application will only capture QVGA images, set `settings.FrameSize` to `FrameSize.Qvga` and omit the later `camera.FrameSize` assignment to reduce memory use.
+
 `Initialize()` returns a `CameraInitResult` with the reason for a failure, such as an invalid configuration, a pin already in use, PSRAM not available or the sensor not being detected. The driver supports a single camera, so a second call will return `AlreadyInitialized`.
 
 For repeated capture, reuse a buffer to avoid allocating a large array for every frame:
@@ -114,7 +116,11 @@ For initial board bring-up, use a small frame size, one frame buffer, and `GrabM
 
 The sensor settings are properties of `Esp32Camera`, equivalent to the `sensor_t` setters: `FrameSize` (`set_framesize`), `Quality` (`set_quality`), `Brightness` (`set_brightness`), `VFlip` (`set_vflip`) and `HMirror` (`set_hmirror`). The values are read back from the sensor status.
 
-The frame buffers are allocated on initialization, so `Esp32Camera.FrameSize` can be reduced at runtime but can't exceed `CameraConnectionSettings.FrameSize`. JPEG quality ranges from 0 (highest quality, largest image) to 63.
+The frame buffers are allocated on initialization, so `CameraConnectionSettings.FrameSize` establishes the largest supported runtime frame size. `Esp32Camera.FrameSize` can reduce the capture size after initialization and can later increase it again, but it can't exceed the initialized size.
+
+This maximum-size behavior is specific to `FrameSize`. `CameraConnectionSettings.JpegQuality` sets the initial JPEG quality, and `Esp32Camera.Quality` can change it at runtime from 0 (highest quality, largest image) to 63 (lowest quality, smallest image). Changing quality does not change the configured maximum frame size, but a higher quality can produce a larger JPEG and may require a larger buffer when using `TryCaptureBuffer`.
+
+GPIO assignments, XCLK frequency, SCCB configuration, frame buffer count, frame buffer location, and grab mode are initialization settings and can't be changed through `Esp32Camera`. `Brightness`, `VFlip`, and `HMirror`, like `FrameSize` and `Quality`, are sensor settings that can be changed after initialization.
 
 Use at least two frame buffers with `GrabMode.Latest` to reduce stale frames during continuous capture. A single frame buffer with `GrabMode.WhenEmpty` uses less memory and is suitable for bring-up.
 
