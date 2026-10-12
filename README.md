@@ -1,6 +1,18 @@
-# nanoFramework.Esp32.Camera
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=nanoframework_nanoFramework.Esp32.Camera&metric=alert_status)](https://sonarcloud.io/dashboard?id=nanoframework_nanoFramework.Esp32.Camera) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=nanoframework_nanoFramework.Esp32.Camera&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=nanoframework_nanoFramework.Esp32.Camera) [![NuGet](https://img.shields.io/nuget/dt/nanoFramework.Esp32.Camera.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/nanoFramework.Esp32.Camera/) [![#yourfirstpr](https://img.shields.io/badge/first--timers--only-friendly-blue.svg)](https://github.com/nanoframework/Home/blob/main/CONTRIBUTING.md) [![Discord](https://img.shields.io/discord/478725473862549535.svg?logo=discord&logoColor=white&label=Discord&color=7289DA)](https://discord.gg/gCyBu8T)
 
-JPEG camera capture for nanoFramework ESP32 and ESP32-S3 devices using Espressif's [`esp32-camera`](https://github.com/espressif/esp32-camera) driver.
+![nanoFramework logo](https://raw.githubusercontent.com/nanoframework/Home/main/resources/logo/nanoFramework-repo-logo.png)
+
+-----
+
+### Welcome to the .NET **nanoFramework** ESP32 Camera Library repository
+
+## Build status
+
+| Component | Build Status | NuGet Package |
+|:-|---|---|
+[![Build Status](https://dev.azure.com/nanoframework/nanoFramework.Esp32.Camera/_apis/build/status%2FnanoFramework.Esp32.Camera?repoName=nanoframework%2FnanoFramework.Esp32.Camera&branchName=refs%2Fpull%2F14%2Fmerge)](https://dev.azure.com/nanoframework/nanoFramework.Esp32.Camera/_build/latest?definitionId=131&repoName=nanoframework%2FnanoFramework.Esp32.Camera&branchName=refs%2Fpull%2F14%2Fmerge)
+
+JPEG camera capture for nanoFramework ESP32, ESP32-S2 and ESP32-S3 devices using Espressif's [`esp32-camera`](https://github.com/espressif/esp32-camera) driver.
 
 ## Usage
 
@@ -103,7 +115,7 @@ if (camera.TryCapture(buffer, out int length))
 
 If a thread is aborted while it's waiting in `TryCapture`, the following captures can return the image from a previous capture. To recover, dispose the camera, then create and initialize a new one.
 
-## Board presets
+### Board presets
 
 - `CameraBoardPresets.AiThinkerEsp32Cam()`
 - `CameraBoardPresets.Esp32S3Eye()`
@@ -111,7 +123,7 @@ If a thread is aborted while it's waiting in `TryCapture`, the following capture
 
 Presets describe boards rather than sensors because the driver detects the sensor (OV2640, OV3660, OV5640, GC0308, etc.), which is available in `Esp32Camera.Sensor`. Verify a preset against the schematic of the board revision being used.
 
-## Configuring a board without a preset
+### Configuring a board without a preset
 
 Create a `CameraConnectionSettings` instance and map each camera signal to its ESP32 GPIO according to the board schematic.
 
@@ -163,7 +175,7 @@ For SCCB, either set both `PinSccbSda` and `PinSccbScl`, or set both to `-1` and
 
 For initial board bring-up, use a small frame size, one frame buffer, and `GrabMode.WhenEmpty`. Select `FrameBufferLocation.Psram` only when PSRAM is present and enabled in the device firmware; otherwise use `FrameBufferLocation.Dram` with a small frame size. If initialization fails, log `result.GetMessage()` and verify the pin mapping, camera power supply, XCLK frequency, and SCCB wiring.
 
-## Connection settings and sensor settings
+### Connection settings and sensor settings
 
 `CameraConnectionSettings` is the equivalent of `camera_config_t`: pins, XCLK frequency, frame size, JPEG quality, frame buffer count and location, grab mode and SCCB I2C port. The camera keeps a copy of the settings taken in the constructor, so later changes to the settings object have no effect, and `Esp32Camera.ConnectionSettings` returns a copy.
 
@@ -177,8 +189,31 @@ GPIO assignments, XCLK frequency, SCCB configuration, frame buffer count, frame 
 
 Use at least two frame buffers with `GrabMode.Latest` to reduce stale frames during continuous capture. A single frame buffer with `GrabMode.WhenEmpty` uses less memory and is suitable for bring-up.
 
-## Memory
+### Memory
 
 PSRAM is shared with the managed heap. The frame buffers and the managed copy of the image must fit at the same time. Start with QQVGA or QVGA and a single frame buffer when validating a board.
 
 `FrameBufferLocation.Dram` can be used for small frame sizes with a single frame buffer on devices without PSRAM. Larger frame sizes require PSRAM.
+
+## Feedback and documentation
+
+For documentation, providing feedback, issues and finding out how to contribute please refer to the [Home repo](https://github.com/nanoframework/Home).
+
+Join our Discord community [here](https://discord.gg/gCyBu8T).
+
+## Credits
+
+The list of contributors to this project can be found at [CONTRIBUTORS](https://github.com/nanoframework/Home/blob/main/CONTRIBUTORS.md).
+
+## License
+
+The **nanoFramework** Class Libraries are licensed under the [MIT license](LICENSE.md).
+
+## Code of Conduct
+
+This project has adopted the code of conduct defined by the Contributor Covenant to clarify expected behaviour in our community.
+For more information see the [.NET Foundation Code of Conduct](https://dotnetfoundation.org/code-of-conduct).
+
+### .NET Foundation
+
+This project is supported by the [.NET Foundation](https://dotnetfoundation.org).
