@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>nanoFramework.Esp32.Camera</id>
+    <title>nanoFramework.Esp32.Camera</title>
+    <version>$version$</version>
+    <authors>Feiko Gorter,nanoframework</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="file">LICENSE.md</license>
+    <releaseNotes>
+    </releaseNotes>
+    <readme>docs\README.md</readme>
+    <developmentDependency>false</developmentDependency>
+    <projectUrl>https://github.com/nanoframework/nanoFramework.Esp32.Camera</projectUrl>
+    <icon>images\nf-logo.png</icon>
+    <repository type="git" url="https://github.com/nanoframework/nanoFramework.Esp32.Camera" commit="$commit$" />
+    <copyright>Copyright (c) .NET Foundation and Contributors</copyright>
+    <description>This library allows to interact with ESP32 devices with support for image sensors from .NET nanoFramework projects.</description>
+    <tags>ESP32 Camera net nf nanoframework</tags>
+    <dependencies>
+      <group>
+        <dependency id="nanoFramework.CoreLibrary" version="1.17.11" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="nanoFramework.Esp32.Camera\bin\Release\nanoFramework.Esp32.Camera.*" target="lib" />
+    <file src="assets\readme.txt" target="" />
+    <file src="README.md" target="docs\" />
+    <file src="assets\nf-logo.png" target="images" />
+    <file src="LICENSE.md" target="" />
+  </files>
+</package>
