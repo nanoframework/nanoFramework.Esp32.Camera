@@ -29,7 +29,7 @@ using (var camera = new Esp32Camera(settings))
 
     if (result != CameraInitResult.Success)
     {
-        Debug.WriteLine($"Camera initialization failed: {GetMessage(result)}");
+        Debug.WriteLine($"Camera initialization failed: {result}");
         return;
     }
 
@@ -42,63 +42,12 @@ using (var camera = new Esp32Camera(settings))
     }
 }
 
-/// <summary>
-/// Gets a descriptive diagnostic message for an initialization result.
-/// </summary>
-/// <param name="result">The initialization result.</param>
-/// <returns>A diagnostic message describing the result.</returns>
-public static string GetMessage(CameraInitResult result)
-{
-    switch (result)
-    {
-        case CameraInitResult.Success:
-            return "Success: The camera was initialized.";
-        case CameraInitResult.AlreadyInitialized:
-            return "AlreadyInitialized: A camera is already initialized.";
-        case CameraInitResult.InvalidPin:
-            return "InvalidPin: A camera pin is invalid or missing.";
-        case CameraInitResult.PinUnavailable:
-            return "PinUnavailable: A camera pin is already in use.";
-        case CameraInitResult.InvalidSccbConfiguration:
-            return "InvalidSccbConfiguration: Set both SCCB pins, or set both to -1 and provide a valid I2C port.";
-        case CameraInitResult.InvalidXclkFrequency:
-            return "InvalidXclkFrequency: The XCLK frequency is invalid.";
-        case CameraInitResult.InvalidFrameSize:
-            return "InvalidFrameSize: The frame size is invalid.";
-        case CameraInitResult.InvalidJpegQuality:
-            return "InvalidJpegQuality: The JPEG quality must be between 0 and 63.";
-        case CameraInitResult.InvalidFrameBufferCount:
-            return "InvalidFrameBufferCount: The frame buffer count is invalid.";
-        case CameraInitResult.InvalidFrameBufferLocation:
-            return "InvalidFrameBufferLocation: The frame buffer location is invalid.";
-        case CameraInitResult.InvalidGrabMode:
-            return "InvalidGrabMode: The grab mode is invalid.";
-        case CameraInitResult.PsramUnavailable:
-            return "PsramUnavailable: Frame buffers require PSRAM, but PSRAM is unavailable.";
-        case CameraInitResult.ClockUnavailable:
-            return "ClockUnavailable: The LEDC timer or channel used for XCLK is already in use.";
-        case CameraInitResult.SensorNotDetected:
-            return "SensorNotDetected: Check the camera wiring, power, and SCCB configuration.";
-        case CameraInitResult.SensorNotSupported:
-            return "SensorNotSupported: The sensor is unsupported or doesn't support JPEG output.";
-        case CameraInitResult.FailedToSetFrameSize:
-            return "FailedToSetFrameSize: The sensor failed to set the frame size.";
-        case CameraInitResult.FailedToSetPixelFormat:
-            return "FailedToSetPixelFormat: The sensor failed to set the pixel format.";
-        case CameraInitResult.OutOfMemory:
-            return "OutOfMemory: There isn't enough memory for the frame buffers or driver.";
-        case CameraInitResult.DriverError:
-            return "DriverError: The camera driver failed to initialize.";
-        default:
-            return "Unknown camera initialization result (" + (int)result + ").";
-    }
-}
-
 ```
 
-This example initializes the camera with VGA-sized frame buffers and then reduces the sensor output to QVGA. Setting the larger size before `Initialize()` allows the application to switch between QVGA and VGA later without reinitializing the camera. If the application will only capture QVGA images, set `settings.FrameSize` to `FrameSize.Qvga` and omit the later `camera.FrameSize` assignment to reduce memory use.
+This example initializes the camera with VGA-sized frame buffers and then reduces the sensor output to QVGA. Setting the larger size before `Initialize()` allows the application to switch between QVGA and VGA later without reinitializing the camera. If the application will only capture QVGA images, set `settings.FrameSize` to `FrameSize.Qvga` and omit the later `camera.FrameSize` assignment to reduce memory use.  So initialise the frame buffers with the largest size you wish to capture.
 
-`Initialize()` returns a `CameraInitResult` with the reason for a failure, such as an invalid configuration, a pin already in use, PSRAM not available or the sensor not being detected. The driver supports a single camera, so a second call will return `AlreadyInitialized`.
+`Initialize()` returns a `CameraInitResult` with the reason for a failure, such as an invalid configuration, a pin already in use, PSRAM not available or the sensor not being detected. The driver supports a single camera, so a second call will return `AlreadyInitialized`.  View the Enum value in [CameraInitResults.cs](nanoFramework.Esp32.Camera/CameraInitResult.cs)
+for more details.
 
 For repeated capture, reuse a buffer to avoid allocating a large array for every frame:
 
@@ -148,7 +97,7 @@ var settings = new CameraConnectionSettings
     PinPclk = PCLK_GPIO,
     XclkFreqHz = 20_000_000,
     FrameSize = FrameSize.Qvga,
-    JpegQuality = 12,
+    JpegQuality = 12,               // 0 (highest quality, largest image) to 63 (lowest quality, smallest image)
     FrameBufferCount = 1,
     FrameBufferLocation = FrameBufferLocation.Psram,
     GrabMode = GrabMode.WhenEmpty,
