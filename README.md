@@ -10,7 +10,7 @@
 
 | Component | Build Status | NuGet Package |
 |:-|---|---|
-[![Build Status](https://dev.azure.com/nanoframework/nanoFramework.Esp32.Camera/_apis/build/status%2FnanoFramework.Esp32.Camera?repoName=nanoframework%2FnanoFramework.Esp32.Camera&branchName=refs%2Fpull%2F14%2Fmerge)](https://dev.azure.com/nanoframework/nanoFramework.Esp32.Camera/_build/latest?definitionId=131&repoName=nanoframework%2FnanoFramework.Esp32.Camera&branchName=refs%2Fpull%2F14%2Fmerge)
+| nanoFramework.Esp32.Camera | [![Build Status](https://dev.azure.com/nanoframework/nanoFramework.Esp32.Camera/_apis/build/status%2FnanoFramework.Esp32.Camera?repoName=nanoframework%2FnanoFramework.Esp32.Camera&branchName=refs%2Fpull%2F14%2Fmerge)](https://dev.azure.com/nanoframework/nanoFramework.Esp32.Camera/_build/latest?definitionId=131&repoName=nanoframework%2FnanoFramework.Esp32.Camera&branchName=refs%2Fpull%2F14%2Fmerge) | [![NuGet](https://img.shields.io/nuget/v/nanoFramework.Esp32.Camera.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/nanoFramework.Esp32.Camera/) |
 
 JPEG camera capture for nanoFramework ESP32, ESP32-S2 and ESP32-S3 devices using Espressif's [`esp32-camera`](https://github.com/espressif/esp32-camera) driver.
 
